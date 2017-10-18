@@ -1,9 +1,14 @@
+package Main;
 import java.awt.BorderLayout;
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,17 +17,20 @@ import javax.swing.WindowConstants;
 import Button.*;
 import Button.Class;
 import Interface.MyButton;
+import Interface.objectRule;
 
 public class MainWindow {
-    
     JFrame f;
-    MyButton button[]= {
-            new Select("Select"),
-            new Association("Association"),
-            new Generalization("Generalization"),
-            new Composition("Composition"),
-            new Class("Class"),
-            new UseCase("use case")
+    CanvasTool canvas;
+    public ArrayList<objectRule> objects = new ArrayList<objectRule>();
+    public MyButton nowMode;
+    public MyButton button[]= {
+            new Select("Select",this),
+            new Association("Association",this),
+            new Generalization("Generalization",this),
+            new Composition("Composition",this),
+            new Class("Class",this),
+            new UseCase("use case",this)
             };
     
     public static void main(String[] args) {
@@ -52,25 +60,14 @@ public class MainWindow {
     private void addToFrame(){
         Container cp = f.getContentPane();
         JPanel panel = new JPanel();
-        JPanel area = new JPanel();
-        area.setBackground(Color.BLUE);
-        cp.add(area,BorderLayout.CENTER);
+        canvas = new CanvasTool(this);
+        cp.add(canvas,BorderLayout.CENTER);
         
         for(int i = 0; i < button.length ; i++){
-            button[i].addActionListener(new buttonClick());
             panel.add(button[i]);
-        }
-        
+        }        
         panel.setLayout(new GridLayout(6,1,0,20));
         cp.add(panel,BorderLayout.WEST); 
     }
     
-    class buttonClick implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-          for(int i = 0; i < button.length ; i++){
-              button[i].setBackground(Color.WHITE);              
-          }
-        }
-    }
-
 }

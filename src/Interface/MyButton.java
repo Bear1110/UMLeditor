@@ -5,26 +5,39 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import Main.MainWindow;
+
 
 public class MyButton extends JButton{
     
     public String type;
+    public MainWindow m;
     
-    public MyButton(String abc){
+    public MyButton(String abc,MainWindow m){
        super(abc);
        type = abc;
-       this.addActionListener(new ActionHandler());
+       this.m = m;
+       this.addActionListener(new ActionHandler(this));
        setBackground(Color.WHITE);
     }
     
-    protected void click(){}
+    protected void click(){}    
+    public void clickOnCavans(){}
     
     class ActionHandler implements ActionListener {
+        MyButton myButton;
+        public ActionHandler(MyButton myButton) {
+            this.myButton = myButton;
+        }
         public void actionPerformed(ActionEvent e) {
-          System.out.println(type);
+          for(int i = 0; i < m.button.length ; i++){
+              m.button[i].setBackground(Color.WHITE);         
+          }
           setBackground(Color.GRAY);
+          m.nowMode = myButton;
           click();
         }
     }
+    
     
 }
