@@ -11,8 +11,8 @@ public class Class extends MyButton{
     }
     protected void click(){
     }
-    public void clickOnCavans(){
-        classObject t = new classObject(m.IdCount++);
+    public void clickOnCavans(int x, int y){
+        classObject t = new classObject(m.IdCount++,x,y,m.canvas.getInsets());
         m.objects.add(t);
         m.canvas.add(t);
         System.out.println(m.objects.size());

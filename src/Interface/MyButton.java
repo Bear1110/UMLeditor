@@ -9,20 +9,17 @@ import Main.MainWindow;
 
 
 public class MyButton extends JButton{
-    
-    public String type;
     public MainWindow m;
     
     public MyButton(String abc,MainWindow m){
        super(abc);
-       type = abc;
        this.m = m;
        this.addActionListener(new ActionHandler(this));
        setBackground(Color.WHITE);
     }
     
     protected void click(){}    
-    public void clickOnCavans(){}
+    public void clickOnCavans(int x,int y){}
     
     class ActionHandler implements ActionListener {
         MyButton myButton;

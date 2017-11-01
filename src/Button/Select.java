@@ -8,5 +8,4 @@ public class Select extends MyButton{
     public Select(String type,MainWindow m){
         super(type,m);
     }
-
 }

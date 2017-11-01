@@ -14,6 +14,7 @@ public class CanvasTool extends JPanel{
         super();
         setBackground(new Color(35, 37, 37));
         addMouseListener(new canvasMouseEvent());
+        setLayout(null);
         this.m = m;
     }
     @Override
@@ -31,7 +32,7 @@ public class CanvasTool extends JPanel{
     class canvasMouseEvent extends MouseAdapter{
         
         public void mouseClicked(MouseEvent e) {
-            m.nowMode.clickOnCavans();
+            m.nowMode.clickOnCavans(e.getX(),e.getY());
             repaint();
         }
         
