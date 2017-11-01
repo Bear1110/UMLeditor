@@ -12,7 +12,9 @@ public class Class extends MyButton{
     protected void click(){
     }
     public void clickOnCavans(){
-        m.objects.add(new classObject());
+        classObject t = new classObject(m.IdCount++);
+        m.objects.add(t);
+        m.canvas.add(t);
         System.out.println(m.objects.size());
     }
 }

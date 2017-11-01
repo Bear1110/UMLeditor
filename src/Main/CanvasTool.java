@@ -1,36 +1,31 @@
 package Main;
 
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Ellipse2D;
 
-import Interface.objectRule;
+import javax.swing.JPanel;
 
 
-public class CanvasTool extends Canvas{
+public class CanvasTool extends JPanel{
     MainWindow m;
     public CanvasTool(MainWindow m){
+        super();
         setBackground(new Color(35, 37, 37));
         addMouseListener(new canvasMouseEvent());
         this.m = m;
     }
-    
-    public void paint(Graphics g) {
-        
-        Graphics2D g2 = (Graphics2D) g;
-        g2.draw(new Ellipse2D.Double(10, 10, 150, 150));
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         
         g.setColor(Color.WHITE);
         //for(objectRule o : m.objects){}
-        for(int i = 0 ; i < m.objects.size() ; i++){
-            g.drawRect(i*100+10, 10, 200, 200);
-        }
-        System.out.println("paint");
+        System.out.println("paintComponent");
     }
+    
+    
     
     
     class canvasMouseEvent extends MouseAdapter{
@@ -48,7 +43,6 @@ public class CanvasTool extends Canvas{
         }
         
         public void mouseDragged(MouseEvent e) {
-        }
-        
+        }        
     }
 }

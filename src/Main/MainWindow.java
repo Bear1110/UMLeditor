@@ -1,13 +1,7 @@
 package Main;
 import java.awt.BorderLayout;
-import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -21,9 +15,10 @@ import Interface.objectRule;
 
 public class MainWindow {
     JFrame f;
-    CanvasTool canvas;
+    public CanvasTool canvas;
     public ArrayList<objectRule> objects = new ArrayList<objectRule>();
     public MyButton nowMode;
+    public int IdCount = 0;
     public MyButton button[]= {
             new Select("Select",this),
             new Association("Association",this),
@@ -34,7 +29,6 @@ public class MainWindow {
             };
     
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         new MainWindow();
     }
     
@@ -43,8 +37,7 @@ public class MainWindow {
       f.setSize(800,800);
       f.setLocationRelativeTo(null);  //再取消預設之視窗相對於螢幕左上角
       addToFrame();
-      f.setVisible(true);
-      
+      f.setVisible(true);      
       f.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
       /*f.addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent e) {
@@ -57,12 +50,13 @@ public class MainWindow {
       f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       
     }
+    
     private void addToFrame(){
-        Container cp = f.getContentPane();
-        JPanel panel = new JPanel();
+        Container cp = f.getContentPane();        
         canvas = new CanvasTool(this);
-        cp.add(canvas,BorderLayout.CENTER);
+        cp.add(canvas);
         
+        JPanel panel = new JPanel();
         for(int i = 0; i < button.length ; i++){
             panel.add(button[i]);
         }        

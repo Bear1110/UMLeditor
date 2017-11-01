@@ -11,6 +11,6 @@ public class Association extends MyButton{
     }
 
     protected void click(){
-        System.out.println("123456789");
+        
     }
 }
