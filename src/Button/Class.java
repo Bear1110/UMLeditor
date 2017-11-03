@@ -5,6 +5,7 @@ import Main.MainWindow;
 import Object.classObject;
 
 public class Class extends MyButton{
+    private static final long serialVersionUID = 1L;
     
     public Class(String type,MainWindow m){
         super(type,m);

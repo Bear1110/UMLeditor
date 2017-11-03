@@ -14,9 +14,10 @@ import Interface.MyButton;
 import Interface.objectRule;
 
 public class MainWindow {
+    public static MainWindow main;
     JFrame f;
     public CanvasTool canvas;
-    public ArrayList<objectRule> objects = new ArrayList<objectRule>();
+    public ArrayList<objectRule> objects;
     public MyButton nowMode;
     public int IdCount = 0;
     public MyButton button[]= {
@@ -31,13 +32,17 @@ public class MainWindow {
     public static void main(String[] args) {
         new MainWindow();
     }
+    public static objectRule objectPress = null;
+    public static objectRule objectRelease = null;
     
     public MainWindow() {
+      main = this;
       f = new JFrame("UML editor");
       f.setSize(800,800);
       f.setLocationRelativeTo(null);  //再取消預設之視窗相對於螢幕左上角
+      objects = new ArrayList<objectRule>();
       addToFrame();
-      f.setVisible(true);      
+      f.setVisible(true);
       f.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
       /*f.addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent e) {
@@ -57,11 +62,10 @@ public class MainWindow {
         cp.add(canvas);
         
         JPanel panel = new JPanel();
-        for(int i = 0; i < button.length ; i++){
-            panel.add(button[i]);
-        }        
+        for(MyButton n : button){
+            panel.add(n);
+        } 
         panel.setLayout(new GridLayout(6,1,0,20));
         cp.add(panel,BorderLayout.WEST); 
     }
-    
 }

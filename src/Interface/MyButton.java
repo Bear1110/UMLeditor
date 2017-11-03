@@ -27,14 +27,23 @@ public class MyButton extends JButton{
             this.myButton = myButton;
         }
         public void actionPerformed(ActionEvent e) {
-          for(int i = 0; i < m.button.length ; i++){
-              m.button[i].setBackground(Color.WHITE);         
+          for(MyButton n : m.button){
+              n.setBackground(Color.WHITE);
           }
           setBackground(Color.GRAY);
           m.nowMode = myButton;
           click();
         }
     }
-    
+    public void afterDrag(){
+        if(MainWindow.objectPress != null && MainWindow.objectRelease != null && MainWindow.objectPress != MainWindow.objectRelease){
+            implementDragFunction();
+        }else{
+            System.out.println("objectPress objectRelease are same or one of them is null");
+        }
+        MainWindow.objectPress = null;
+        MainWindow.objectRelease = null;
+    }
+    protected void implementDragFunction(){ }
     
 }

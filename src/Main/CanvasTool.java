@@ -23,7 +23,7 @@ public class CanvasTool extends JPanel{
         
         g.setColor(Color.WHITE);
         //for(objectRule o : m.objects){}
-        System.out.println("paintComponent");
+        //System.out.println("paintComponent");
     }
     
     
@@ -32,12 +32,13 @@ public class CanvasTool extends JPanel{
     class canvasMouseEvent extends MouseAdapter{
         
         public void mouseClicked(MouseEvent e) {
+            if(m.nowMode==null)
+                return;
             m.nowMode.clickOnCavans(e.getX(),e.getY());
             repaint();
         }
         
         public void mousePressed(MouseEvent e) {
-            
         }
 
         public void mouseReleased(MouseEvent e) {
