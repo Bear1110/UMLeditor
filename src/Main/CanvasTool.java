@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 
 
 public class CanvasTool extends JPanel{
+    private static final long serialVersionUID = 1L;
+    
     MainWindow m;
     public CanvasTool(MainWindow m){
         super();

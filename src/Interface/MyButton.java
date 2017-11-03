@@ -9,6 +9,8 @@ import Main.MainWindow;
 
 
 public class MyButton extends JButton{
+    private static final long serialVersionUID = 1L;
+    
     public MainWindow m;
     
     public MyButton(String abc,MainWindow m){

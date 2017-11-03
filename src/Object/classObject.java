@@ -1,13 +1,12 @@
 package Object;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
-import java.awt.event.MouseEvent;
 
 import Interface.objectRule;
 
-public class classObject extends objectRule{    
+public class classObject extends objectRule{
+    private static final long serialVersionUID = 1L;
     
     public classObject(int id, int x, int y,Insets insets){
         super(id, x, y);

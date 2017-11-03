@@ -10,11 +10,11 @@ import javax.swing.JButton;
 import Main.MainWindow;
 
 public abstract class objectRule extends JButton implements MouseListener{
-    public int id;
+    private static final long serialVersionUID = 1L;
+    
+    public int id,x,y;
     public int depth = 0;
     private static boolean press = false;
-    protected int x;
-    protected int y;
     public abstract void drawInside(Graphics g);
     
     public objectRule(int id, int x, int y) {
