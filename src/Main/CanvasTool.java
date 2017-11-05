@@ -4,12 +4,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
+
+import Interface.Line;
 
 
 public class CanvasTool extends JPanel{
     private static final long serialVersionUID = 1L;
+    
+    public ArrayList<Line> lines = new ArrayList<Line>();
     
     MainWindow m;
     public CanvasTool(MainWindow m){
@@ -24,7 +29,9 @@ public class CanvasTool extends JPanel{
         super.paintComponent(g);
         
         g.setColor(Color.WHITE);
-        //for(objectRule o : m.objects){}
+        for(Line o : lines){
+            
+        }
         //System.out.println("paintComponent");
     }
     
