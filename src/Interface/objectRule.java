@@ -2,6 +2,7 @@ package Interface;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -12,22 +13,34 @@ import Main.MainWindow;
 
 public abstract class objectRule extends JButton implements MouseListener , MouseMotionListener {
     private static final long serialVersionUID = 1L;
-    
-    public int id,x,y,width,heigh;
-    public int depth = 0;
     private static boolean press = false;
-    public abstract void drawInside(Graphics g);
     
-    public objectRule(int id, int x, int y) {
+    public int id,x,y,width,heigh,depth = 0;
+    public int[][] directionCoordinate = new int[4][2];
+    
+    public int connectionPort = 0;
+    
+    public abstract void drawInside(Graphics g);    
+    
+    public objectRule(int id, int x, int y,int width, int heigh, Insets insets) {
         super();
         addMouseListener(this);
         addMouseMotionListener(this);
         this.id = id;
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.heigh = heigh;
         setOpaque(false);
         setContentAreaFilled(false);
         setBorderPainted(false);
+        setBounds(x + insets.left, y + insets.top,width,heigh);
+        directionCoordinate[0][0] = width / 2; //北
+        directionCoordinate[1][0] = width;     //東
+        directionCoordinate[1][1] = heigh / 2;
+        directionCoordinate[2][0] = width / 2; //南
+        directionCoordinate[2][1] = heigh;
+        directionCoordinate[3][1] = heigh / 2; //西        
     }
 
     public void paintComponent(Graphics g) {
@@ -35,18 +48,36 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
         g.setColor(Color.WHITE);
         drawInside(g);
      }
-    public void mousePresse() {
+    public void mousePresse(int x , int y) {
         MainWindow.objectPress = this;
+        connectionPort = whichDirection(x,y);
+        System.out.println("mousePresse"+connectionPort);
     }
-    public void mouseEnter() {
+    public void mouseEnter(int x , int y) {
         MainWindow.objectRelease = this;
+        connectionPort = whichDirection(x,y);
+        System.out.println("mouseEnter"+connectionPort);
+    }
+    private int whichDirection(int x, int y){
+        int distance = 9999999;
+        int port = 0;
+        for(int i = 0 ; i < 4 ;i++){
+            int xx = (x-directionCoordinate[i][0]);
+            int yy = (y-directionCoordinate[i][1]);
+            int d = xx*xx + yy*yy;
+            if(d <  distance){
+                distance = d;
+                port = i;
+            }
+        }
+        return port;
     }
     public void mouseRelease() {
     }
     
     public void mousePressed(MouseEvent e) {
         press = true;
-        mousePresse();
+        mousePresse(e.getX(),e.getY());
     }
     public void mouseReleased(MouseEvent e) {
         mouseRelease();
@@ -57,24 +88,12 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
     public void mouseEntered(MouseEvent e) {
         if(!press)
             return;
-        mouseEnter();
+        mouseEnter(e.getX(),e.getY());
     }
     public void mouseExited(MouseEvent e) {}
-    public void mouseDragged(MouseEvent e){}
-    public void mouseMoved(MouseEvent e){
-        int[][] directionCoordinate = {{width/2,0},{width,heigh/2},{width/2,heigh},{0,heigh/2}};
-        String[] direction = {"N","E","S","W"};
-        int j = 0;
-        int distance = 9999999;
-        for(int i = 0 ; i < 4 ;i++){
-            int xx = (e.getX()-directionCoordinate[i][0]);
-            int yy = (e.getY()-directionCoordinate[i][1]);
-            int d = xx*xx + yy*yy;
-            if(d <  distance){
-                distance = d;
-                j = i;
-            }
-        }
-        System.out.println(direction[j]);        
+    public void mouseDragged(MouseEvent e){
     }
+    public void mouseMoved(MouseEvent e){
+    }
+    
 }

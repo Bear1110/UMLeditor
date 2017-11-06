@@ -8,10 +8,7 @@ public class useCaseObject extends objectRule{
     private static final long serialVersionUID = 1L;
 
     public useCaseObject(int id, int x, int y,Insets insets){
-        super(id, x, y);
-        width = 151;
-        heigh = 101;
-        setBounds(x + insets.left, y + insets.top,width,heigh);
+        super(id, x, y,151,101,insets);
     }
 
     @Override
