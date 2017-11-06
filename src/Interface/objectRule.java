@@ -8,17 +8,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JButton;
 
 import Main.MainWindow;
+import Object.GroupComposite;
 
 public abstract class objectRule extends JButton implements MouseListener , MouseMotionListener {
     private static final long serialVersionUID = 1L;
     private static boolean press = false;
     private Timer timer;
+    public GroupComposite groupFather;
     
     public int id,x,y,width,heigh,depth = 0;
     public int[][] directionCoordinate = new int[4][2];
@@ -112,9 +115,15 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
         mouseEnter(e.getX(),e.getY());
     }
     public void mouseClicked(MouseEvent e){
-        for(objectRule o : MainWindow.objects)
-            o.selected = false;
-        selected = true;
+        if(MainWindow.nowMode.getClass().equals(Button.Select.class)){
+            MainWindow.selectedObjects = new ArrayList<objectRule>();
+            for(objectRule o : MainWindow.objects)
+                o.selected = false;
+            if(groupFather != null){
+                groupFather.selectedAll();
+            }else
+                selected = true;
+        }
     }
     public void mouseExited(MouseEvent e) {}
     public void mouseDragged(MouseEvent e){}

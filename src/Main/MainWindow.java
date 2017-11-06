@@ -1,21 +1,29 @@
 package Main;
 import java.awt.BorderLayout;
+import java.awt.Composite;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 
-import Button.*;
+import Button.Association;
 import Button.Class;
+import Button.Composition;
+import Button.Generalization;
+import Button.Select;
+import Button.UseCase;
 import Interface.MyButton;
 import Interface.objectRule;
+import Object.GroupComposite;
 
 public class MainWindow {
     JFrame f;
@@ -23,9 +31,12 @@ public class MainWindow {
     JMenu menu, submenu;
     
     public CanvasTool canvas;
-    public static ArrayList<objectRule> objects;
-    public ArrayList<objectRule> selectedObjects;
     public static MyButton nowMode;
+    public static ArrayList<objectRule> objects;
+    public static ArrayList<objectRule> selectedObjects;
+    public Hashtable<Integer,GroupComposite> layer;
+    public Hashtable<Integer,GroupComposite> GroupComposites;
+    
     public int IdCount = 0;
     public MyButton button[]= {
             new Select("Select",this),
@@ -49,6 +60,7 @@ public class MainWindow {
       f.setLocationRelativeTo(null);  //再取消預設之視窗相對於螢幕左上角
       objects = new ArrayList<objectRule>();
       selectedObjects = new ArrayList<objectRule>();
+      GroupComposites = new Hashtable<Integer,GroupComposite>();
       addToFrame();
       f.setVisible(true);
       f.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -80,31 +92,55 @@ public class MainWindow {
     
     private void AboutMenu(){
         menuBar = new JMenuBar();
-        menu = new JMenu("A Menu");
-        menu.getAccessibleContext().setAccessibleDescription(
-                "The only menu in this program that has menu items");
-        menu.addMenuListener(new MenuListener() {
+        menu = new JMenu("Edit Menu");
+        
+      //a group of JMenuItems
+        JMenuItem menuItem = new JMenuItem("Group");
+        menuItem.addActionListener(new Group());
+        menu.add(menuItem);
 
-            @Override
-            public void menuSelected(MenuEvent e) {
-                // TODO Auto-generated method stub
-                System.out.println("menuSelected");                
-            }
-
-            @Override
-            public void menuDeselected(MenuEvent e) {
-                // TODO Auto-generated method stub
-                
-            }
-
-            @Override
-            public void menuCanceled(MenuEvent e) {
-                // TODO Auto-generated method stub
-                
-            }
-          
-        });
+        menuItem = new JMenuItem("UnGroup");
+        menuItem.addActionListener(new UnGroup());
+        menu.add(menuItem);        
+        
+        
         menuBar.add(menu);
         f.setJMenuBar(menuBar);
+    }
+    
+    class Group implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(!nowMode.getClass().equals(Button.Select.class))return;
+            GroupComposite test = new GroupComposite(IdCount++);
+            for(objectRule o : selectedObjects){
+                if(o.groupFather != null) //表示欲加入的原件他已經是某一層了
+                    test.addBasicLayer(o.groupFather);
+                else{
+                    test.addBasicLayer(o);
+                }
+            }
+            GroupComposites.put(test.id, test);
+        }
+    }
+    class UnGroup implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(!nowMode.getClass().equals(Button.Select.class))return;
+            int max = -111;
+            int id = 0;
+            for(objectRule o : selectedObjects){
+                if(max < o.groupFather.heigh){
+                    
+                    id = o.groupFather.id;
+                    max = o.groupFather.heigh;
+                }
+            }
+            GroupComposite wantRemove = GroupComposites.remove(id);
+            if(wantRemove != null)
+                wantRemove.remove();            
+        }
     }
 }
