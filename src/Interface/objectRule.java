@@ -18,10 +18,11 @@ import Main.MainWindow;
 public abstract class objectRule extends JButton implements MouseListener , MouseMotionListener {
     private static final long serialVersionUID = 1L;
     private static boolean press = false;
-    Timer timer;
+    private Timer timer;
     
     public int id,x,y,width,heigh,depth = 0;
     public int[][] directionCoordinate = new int[4][2];
+    public boolean selected = false;
     
     public int connectionPort = 0;
     
@@ -61,16 +62,18 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
         super.paintComponent(g);
         g.setColor(Color.WHITE);
         drawInside(g);
-        if(MainWindow.nowMode.getClass().equals(Button.Select.class) && MainWindow.objectClicked == this)
+        if(MainWindow.nowMode.getClass().equals(Button.Select.class) && selected)
                 drawConnectionPort(g);
      }
+    
     private void drawConnectionPort(Graphics g){
         int recrWidth = 10;
-        g.drawRect(directionCoordinate[0][0]-recrWidth/2,directionCoordinate[0][1],recrWidth,recrWidth);
-        g.drawRect(directionCoordinate[1][0]-recrWidth,directionCoordinate[1][1]-recrWidth/2,recrWidth,recrWidth);
-        g.drawRect(directionCoordinate[2][0]-recrWidth/2,directionCoordinate[2][1]-recrWidth,recrWidth,recrWidth);
-        g.drawRect(directionCoordinate[3][0],directionCoordinate[3][1]-recrWidth/2,recrWidth,recrWidth);
+        g.fillRect(directionCoordinate[0][0]-recrWidth/2,directionCoordinate[0][1],recrWidth,recrWidth);
+        g.fillRect(directionCoordinate[1][0]-recrWidth,directionCoordinate[1][1]-recrWidth/2,recrWidth,recrWidth);
+        g.fillRect(directionCoordinate[2][0]-recrWidth/2,directionCoordinate[2][1]-recrWidth,recrWidth,recrWidth);
+        g.fillRect(directionCoordinate[3][0],directionCoordinate[3][1]-recrWidth/2,recrWidth,recrWidth);
     }
+    
     public void mousePresse(int x , int y) {
         MainWindow.objectPress = this;
         connectionPort = whichDirection(x,y);
@@ -100,7 +103,7 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
     }
     public void mouseReleased(MouseEvent e) {
         press = false;
-        MainWindow.nowMode.afterDrag();
+        MainWindow.nowMode.afterDragForObject();
     }
     
     public void mouseEntered(MouseEvent e) {
@@ -109,7 +112,9 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
         mouseEnter(e.getX(),e.getY());
     }
     public void mouseClicked(MouseEvent e){
-        MainWindow.objectClicked = this;
+        for(objectRule o : MainWindow.objects)
+            o.selected = false;
+        selected = true;
     }
     public void mouseExited(MouseEvent e) {}
     public void mouseDragged(MouseEvent e){}

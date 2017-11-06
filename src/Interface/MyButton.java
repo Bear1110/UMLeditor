@@ -37,7 +37,7 @@ public class MyButton extends JButton{
           click();
         }
     }
-    public void afterDrag(){
+    public void afterDragForObject(){
         if(MainWindow.objectPress != null && MainWindow.objectRelease != null && MainWindow.objectPress != MainWindow.objectRelease){
             implementDragFunction();
             m.canvas.repaint();
@@ -45,9 +45,10 @@ public class MyButton extends JButton{
             System.out.println("objectPress objectRelease are same or one of them is null");
         }
         MainWindow.objectPress = null;
-        MainWindow.objectRelease = null;
-        
+        MainWindow.objectRelease = null;        
     }
+    public void pressOnCavans(int x, int y){}
+    public void releaseOnCavans(int x, int y,MainWindow m){}
     protected void implementDragFunction(){ }
     
 }

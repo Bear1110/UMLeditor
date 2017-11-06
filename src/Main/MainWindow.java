@@ -16,7 +16,8 @@ import Interface.objectRule;
 public class MainWindow {
     JFrame f;
     public CanvasTool canvas;
-    public ArrayList<objectRule> objects;
+    public static ArrayList<objectRule> objects;
+    public ArrayList<objectRule> selectedObjects;
     public static MyButton nowMode;
     public int IdCount = 0;
     public MyButton button[]= {
@@ -40,6 +41,7 @@ public class MainWindow {
       f.setSize(800,800);
       f.setLocationRelativeTo(null);  //再取消預設之視窗相對於螢幕左上角
       objects = new ArrayList<objectRule>();
+      selectedObjects = new ArrayList<objectRule>();
       addToFrame();
       f.setVisible(true);
       f.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);

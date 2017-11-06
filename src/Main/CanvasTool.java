@@ -22,6 +22,7 @@ public class CanvasTool extends JPanel{
         super();
         setBackground(new Color(35, 37, 37));
         addMouseListener(new canvasMouseEvent());
+        addMouseMotionListener(new canvasMouseEvent());
         setLayout(null);
         this.m = m;
     }
@@ -55,12 +56,19 @@ public class CanvasTool extends JPanel{
         }
         
         public void mousePressed(MouseEvent e) {
+            if(m.nowMode==null)
+                return;
+            m.nowMode.pressOnCavans(e.getX(), e.getY());
         }
 
         public void mouseReleased(MouseEvent e) {
+            if(m.nowMode==null)
+                return;
+            m.nowMode.releaseOnCavans(e.getX(), e.getY(),m);
         }
         
         public void mouseDragged(MouseEvent e) {
-        }        
+            
+        }
     }
 }
