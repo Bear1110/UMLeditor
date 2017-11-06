@@ -30,9 +30,10 @@ public class CanvasTool extends JPanel{
         
         g.setColor(Color.WHITE);
         for(Line o : lines){
-            
+            g.drawLine(o.from.x,o.from.y,o.to.x,o.to.y);
+            System.out.println("draw Line");
         }
-        //System.out.println("paintComponent");
+        System.out.println("paintComponent");
     }
     
     

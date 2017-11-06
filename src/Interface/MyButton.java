@@ -40,11 +40,13 @@ public class MyButton extends JButton{
     public void afterDrag(){
         if(MainWindow.objectPress != null && MainWindow.objectRelease != null && MainWindow.objectPress != MainWindow.objectRelease){
             implementDragFunction();
+            m.canvas.repaint();
         }else{
             System.out.println("objectPress objectRelease are same or one of them is null");
         }
         MainWindow.objectPress = null;
         MainWindow.objectRelease = null;
+        
     }
     protected void implementDragFunction(){ }
     

@@ -1,11 +1,12 @@
 package Line;
 
 import Interface.Line;
+import Interface.objectRule;
 
 public class CompositionLine extends Line {
 
-    public CompositionLine() {
-        // TODO Auto-generated constructor stub
+    public CompositionLine(objectRule p,objectRule r) {
+        super(p,r);
     }
 
     @Override

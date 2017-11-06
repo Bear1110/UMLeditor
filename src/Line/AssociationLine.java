@@ -1,11 +1,12 @@
 package Line;
 
 import Interface.Line;
+import Interface.objectRule;
 
 public class AssociationLine extends Line {
 
-    public AssociationLine() {
-        // TODO Auto-generated constructor stub
+    public AssociationLine(objectRule p,objectRule r) {
+        super(p,r);
     }
 
     @Override

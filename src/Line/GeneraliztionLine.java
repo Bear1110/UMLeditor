@@ -1,11 +1,12 @@
 package Line;
 
 import Interface.Line;
+import Interface.objectRule;
 
 public class GeneraliztionLine extends Line {
 
-    public GeneraliztionLine() {
-        // TODO Auto-generated constructor stub
+    public GeneraliztionLine(objectRule p,objectRule r) {
+        super(p,r);
     }
 
     @Override
