@@ -51,12 +51,10 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
     public void mousePresse(int x , int y) {
         MainWindow.objectPress = this;
         connectionPort = whichDirection(x,y);
-        System.out.println("mousePresse"+connectionPort);
     }
     public void mouseEnter(int x , int y) {
         MainWindow.objectRelease = this;
         connectionPort = whichDirection(x,y);
-        System.out.println("mouseEnter"+connectionPort);
     }
     private int whichDirection(int x, int y){
         int distance = 9999999;
@@ -72,28 +70,24 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
         }
         return port;
     }
-    public void mouseRelease() {
-    }
     
     public void mousePressed(MouseEvent e) {
         press = true;
         mousePresse(e.getX(),e.getY());
     }
     public void mouseReleased(MouseEvent e) {
-        mouseRelease();
         press = false;
         MainWindow.main.nowMode.afterDrag();
     }
-    public void mouseClicked(MouseEvent e){}
+    
     public void mouseEntered(MouseEvent e) {
         if(!press)
             return;
         mouseEnter(e.getX(),e.getY());
     }
+    public void mouseClicked(MouseEvent e){}
     public void mouseExited(MouseEvent e) {}
-    public void mouseDragged(MouseEvent e){
-    }
-    public void mouseMoved(MouseEvent e){
-    }
+    public void mouseDragged(MouseEvent e){}
+    public void mouseMoved(MouseEvent e){}
     
 }

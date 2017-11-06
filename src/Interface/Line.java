@@ -1,5 +1,7 @@
 package Interface;
 
+import java.awt.Graphics;
+
 public abstract class Line {
     public objectRule from;
     public objectRule to;
@@ -12,6 +14,6 @@ public abstract class Line {
         toPort = to.connectionPort;
     }
     
-    public abstract void drawLine();
+    public abstract void drawLine(Graphics g);
 
 }

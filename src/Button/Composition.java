@@ -1,6 +1,7 @@
 package Button;
 
 import Interface.MyButton;
+import Line.CompositionLine;
 import Main.MainWindow;
 
 public class Composition extends MyButton{
@@ -10,5 +11,6 @@ public class Composition extends MyButton{
         super(type,m);
     }
     public void implementDragFunction(){
+        m.canvas.lines.add(new CompositionLine(MainWindow.objectPress,MainWindow.objectRelease));
     }
 }

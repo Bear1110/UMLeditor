@@ -36,6 +36,7 @@ public class CanvasTool extends JPanel{
                     o.to.x+o.to.directionCoordinate[o.toPort][0],
                     o.to.y+o.to.directionCoordinate[o.toPort][1]                    
                     );
+            o.drawLine(g);
         }
     }
     

@@ -1,5 +1,7 @@
 package Line;
 
+import java.awt.Graphics;
+
 import Interface.Line;
 import Interface.objectRule;
 
@@ -10,7 +12,7 @@ public class GeneraliztionLine extends Line {
     }
 
     @Override
-    public void drawLine() {
+    public void drawLine(Graphics g) {
 
     }
 

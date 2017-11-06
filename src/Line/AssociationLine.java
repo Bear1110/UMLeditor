@@ -1,5 +1,7 @@
 package Line;
 
+import java.awt.Graphics;
+
 import Interface.Line;
 import Interface.objectRule;
 
@@ -10,9 +12,9 @@ public class AssociationLine extends Line {
     }
 
     @Override
-    public void drawLine() {
+    public void drawLine(Graphics g) {
         // TODO Auto-generated method stub
-
+        
     }
 
 }
