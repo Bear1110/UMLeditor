@@ -12,9 +12,7 @@ public class AssociationLine extends Line {
     }
 
     @Override
-    public void drawLine(Graphics g) {
-        // TODO Auto-generated method stub
-        
+    public void drawLine(Graphics g) {        
     }
 
 }

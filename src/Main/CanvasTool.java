@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import Interface.Line;
+import Interface.objectRule;
 
 
 public class CanvasTool extends JPanel{
@@ -46,10 +47,11 @@ public class CanvasTool extends JPanel{
     class canvasMouseEvent extends MouseAdapter{
         
         public void mouseClicked(MouseEvent e) {
+            Main.MainWindow.objectClicked = null;
             if(m.nowMode==null)
                 return;
             m.nowMode.clickOnCavans(e.getX(),e.getY());
-            repaint();
+            repaint();            
         }
         
         public void mousePressed(MouseEvent e) {
