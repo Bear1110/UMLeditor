@@ -5,8 +5,12 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 import Button.*;
 import Button.Class;
@@ -15,6 +19,9 @@ import Interface.objectRule;
 
 public class MainWindow {
     JFrame f;
+    JMenuBar menuBar;
+    JMenu menu, submenu;
+    
     public CanvasTool canvas;
     public static ArrayList<objectRule> objects;
     public ArrayList<objectRule> selectedObjects;
@@ -67,7 +74,37 @@ public class MainWindow {
             panel.add(n);
         } 
         panel.setLayout(new GridLayout(6,1,0,20));
-        cp.add(panel,BorderLayout.WEST); 
+        cp.add(panel,BorderLayout.WEST);       
+        AboutMenu();
     }
     
+    private void AboutMenu(){
+        menuBar = new JMenuBar();
+        menu = new JMenu("A Menu");
+        menu.getAccessibleContext().setAccessibleDescription(
+                "The only menu in this program that has menu items");
+        menu.addMenuListener(new MenuListener() {
+
+            @Override
+            public void menuSelected(MenuEvent e) {
+                // TODO Auto-generated method stub
+                System.out.println("menuSelected");                
+            }
+
+            @Override
+            public void menuDeselected(MenuEvent e) {
+                // TODO Auto-generated method stub
+                
+            }
+
+            @Override
+            public void menuCanceled(MenuEvent e) {
+                // TODO Auto-generated method stub
+                
+            }
+          
+        });
+        menuBar.add(menu);
+        f.setJMenuBar(menuBar);
+    }
 }
