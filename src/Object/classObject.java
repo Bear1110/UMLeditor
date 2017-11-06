@@ -10,7 +10,9 @@ public class classObject extends objectRule{
     
     public classObject(int id, int x, int y,Insets insets){
         super(id, x, y);
-        setBounds(x + insets.left, y + insets.top,101,151);
+        width = 101;
+        heigh = 151;
+        setBounds(x + insets.left, y + insets.top,width,heigh);
     }
 
     @Override

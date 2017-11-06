@@ -12,6 +12,5 @@ public class Association extends MyButton {
     }
     public void implementDragFunction(){
         m.canvas.lines.add(new AssociationLine(m.objectPress,m.objectRelease));
-        System.out.println("afterDrag  "+this.getClass());
     }
 }

@@ -14,6 +14,5 @@ public class UseCase extends MyButton{
         useCaseObject t = new useCaseObject(m.IdCount++,x,y,m.canvas.getInsets());
         m.objects.add(t);
         m.canvas.add(t);
-        System.out.println(m.objects.size());
     }
 }

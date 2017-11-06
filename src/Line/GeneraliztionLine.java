@@ -11,7 +11,6 @@ public class GeneraliztionLine extends Line {
 
     @Override
     public void drawLine() {
-        // TODO Auto-generated method stub
 
     }
 

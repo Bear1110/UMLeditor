@@ -10,6 +10,5 @@ public class Composition extends MyButton{
         super(type,m);
     }
     public void implementDragFunction(){
-        System.out.println("afterDrag  "+this.getClass());
     }
 }

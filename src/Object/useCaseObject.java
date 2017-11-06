@@ -9,7 +9,9 @@ public class useCaseObject extends objectRule{
 
     public useCaseObject(int id, int x, int y,Insets insets){
         super(id, x, y);
-        setBounds(x + insets.left, y + insets.top,151,101);
+        width = 151;
+        heigh = 101;
+        setBounds(x + insets.left, y + insets.top,width,heigh);
     }
 
     @Override
