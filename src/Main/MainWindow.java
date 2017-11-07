@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
@@ -28,14 +29,13 @@ import Object.GroupComposite;
 public class MainWindow {
     JFrame f;
     JMenuBar menuBar;
-    JMenu menu, submenu;
-    
+    JMenu menu, submenu;    
     public CanvasTool canvas;
-    public static MyButton nowMode;
+    
+    //store data
     public static ArrayList<objectRule> objects;
     public static ArrayList<objectRule> selectedObjects;
-    public Hashtable<Integer,GroupComposite> layer;
-    public Hashtable<Integer,GroupComposite> GroupComposites;
+    public Hashtable<Integer,GroupComposite> allGroupComposites;
     
     public int IdCount = 0;
     public MyButton button[]= {
@@ -46,13 +46,16 @@ public class MainWindow {
             new Class("Class",this),
             new UseCase("use case",this)
             };
+    //store some status
+    public static objectRule objectClickedForChangeName = null;
+    public static objectRule objectPress = null;
+    public static objectRule objectRelease = null;
+    public static MyButton nowMode;
     
     public static void main(String[] args) {
         new MainWindow();
     }
-    public static objectRule objectClicked = null;
-    public static objectRule objectPress = null;
-    public static objectRule objectRelease = null;
+    
     
     public MainWindow() {
       f = new JFrame("UML editor");
@@ -60,7 +63,7 @@ public class MainWindow {
       f.setLocationRelativeTo(null);  //再取消預設之視窗相對於螢幕左上角
       objects = new ArrayList<objectRule>();
       selectedObjects = new ArrayList<objectRule>();
-      GroupComposites = new Hashtable<Integer,GroupComposite>();
+      allGroupComposites = new Hashtable<Integer,GroupComposite>();
       addToFrame();
       f.setVisible(true);
       f.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -94,7 +97,7 @@ public class MainWindow {
         menuBar = new JMenuBar();
         menu = new JMenu("Edit Menu");
         
-      //a group of JMenuItems
+        //a group of JMenuItems
         JMenuItem menuItem = new JMenuItem("Group");
         menuItem.addActionListener(new Group());
         menu.add(menuItem);
@@ -103,8 +106,13 @@ public class MainWindow {
         menuItem.addActionListener(new UnGroup());
         menu.add(menuItem);        
         
+        menuItem = new JMenuItem("change object name");
+        menuItem.addActionListener(new changeName());
+        menu.add(menuItem); 
         
         menuBar.add(menu);
+        
+        
         f.setJMenuBar(menuBar);
     }
     
@@ -121,7 +129,7 @@ public class MainWindow {
                     test.addBasicLayer(o);
                 }
             }
-            GroupComposites.put(test.id, test);
+            allGroupComposites.put(test.id, test);
         }
     }
     class UnGroup implements ActionListener{
@@ -138,9 +146,25 @@ public class MainWindow {
                     max = o.groupFather.heigh;
                 }
             }
-            GroupComposite wantRemove = GroupComposites.remove(id);
+            GroupComposite wantRemove = allGroupComposites.remove(id);
             if(wantRemove != null)
                 wantRemove.remove();            
+        }
+    }
+    class changeName implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(!nowMode.getClass().equals(Button.Select.class))return;
+            if(MainWindow.objectClickedForChangeName == null)return;
+            String s = (String)JOptionPane.showInputDialog(
+                    f,
+                    "Input the Name",
+                    "Change object name",
+                    JOptionPane.PLAIN_MESSAGE);
+            System.out.println(s);
+            MainWindow.objectClickedForChangeName.setText(s);
+            MainWindow.objectClickedForChangeName = null;
         }
     }
 }

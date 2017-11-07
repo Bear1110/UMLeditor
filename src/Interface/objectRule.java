@@ -13,6 +13,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 import Main.MainWindow;
 import Object.GroupComposite;
@@ -47,6 +48,8 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
         setContentAreaFilled(false);
         setBorderPainted(false);
         setBounds(x + insets.left, y + insets.top,width,heigh);
+        setForeground(Color.WHITE); //button的顏色
+        setVerticalAlignment(SwingConstants.TOP); //button的字讓他飛到最上面
         directionCoordinate[0][0] = width / 2; //北
         directionCoordinate[1][0] = width;     //東
         directionCoordinate[1][1] = heigh / 2;
@@ -61,7 +64,7 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
             }   
         };
         timer = new Timer();
-        timer.schedule(repeatRepaint,100,500);
+        timer.schedule(repeatRepaint,100,500); //讓他定時 repaint();
     }
 
     public void paintComponent(Graphics g) {
@@ -130,6 +133,7 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
     public void mouseClicked(MouseEvent e){
         if(!MainWindow.nowMode.getClass().equals(Button.Select.class))return;
         selectedObject();
+        MainWindow.objectClickedForChangeName = this;
     }
     public void mouseExited(MouseEvent e) {}
     public void mouseDragged(MouseEvent e){
