@@ -21,6 +21,8 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
     private static final long serialVersionUID = 1L;
     private static boolean press = false;
     private Timer timer;
+    private Insets insets;
+    
     public GroupComposite groupFather;
     
     public int id,x,y,width,heigh,depth = 0;
@@ -40,6 +42,7 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
         this.y = y;
         this.width = width;
         this.heigh = heigh;
+        this.insets = insets;
         setOpaque(false);
         setContentAreaFilled(false);
         setBorderPainted(false);
@@ -99,7 +102,17 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
         }
         return port;
     }
-    
+    private void selectedObject(){
+        MainWindow.selectedObjects = new ArrayList<objectRule>();
+        for(objectRule o : MainWindow.objects)
+            o.selected = false;
+        if(groupFather != null)
+            groupFather.selectedAll();
+        else{
+            selected = true;
+            MainWindow.selectedObjects.add(this);
+        }
+    }
     public void mousePressed(MouseEvent e) {
         press = true;
         mousePresse(e.getX(),e.getY());
@@ -115,18 +128,23 @@ public abstract class objectRule extends JButton implements MouseListener , Mous
         mouseEnter(e.getX(),e.getY());
     }
     public void mouseClicked(MouseEvent e){
-        if(MainWindow.nowMode.getClass().equals(Button.Select.class)){
-            MainWindow.selectedObjects = new ArrayList<objectRule>();
-            for(objectRule o : MainWindow.objects)
-                o.selected = false;
-            if(groupFather != null){
-                groupFather.selectedAll();
-            }else
-                selected = true;
-        }
+        if(!MainWindow.nowMode.getClass().equals(Button.Select.class))return;
+        selectedObject();
     }
     public void mouseExited(MouseEvent e) {}
-    public void mouseDragged(MouseEvent e){}
+    public void mouseDragged(MouseEvent e){
+        if(!MainWindow.nowMode.getClass().equals(Button.Select.class))return;
+        
+        selectedObject();
+        int changeX = e.getX();
+        int changeY = e.getY();
+               
+        for(objectRule o : MainWindow.selectedObjects){
+            o.x += changeX;
+            o.y += changeY;
+            o.setBounds(o.x + o.insets.left, o.y + o.insets.top,o.width,o.heigh);
+        }
+    }
     public void mouseMoved(MouseEvent e){}
     
 }
