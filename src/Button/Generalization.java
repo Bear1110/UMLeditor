@@ -1,6 +1,7 @@
 package Button;
 
 import Interface.MyButton;
+import Line.GeneraliztionLine;
 import Main.MainWindow;
 
 public class Generalization extends MyButton{
@@ -10,6 +11,6 @@ public class Generalization extends MyButton{
         super(type,m);
     }
     public void implementDragFunction(){
-        System.out.println("afterDrag  "+this.getClass());
+        m.canvas.lines.add(new GeneraliztionLine(MainWindow.objectPress,MainWindow.objectRelease));
     }
 }

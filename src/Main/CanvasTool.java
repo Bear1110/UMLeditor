@@ -42,8 +42,9 @@ public class CanvasTool extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        g.setColor(Color.WHITE);
+        
         for(Line o : lines){
+            g.setColor(Color.WHITE);
             g.drawLine(
                     o.from.x+o.from.directionCoordinate[o.fromPort][0],
                     o.from.y+o.from.directionCoordinate[o.fromPort][1],

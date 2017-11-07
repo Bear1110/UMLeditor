@@ -1,5 +1,6 @@
 package Line;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import Interface.Line;
@@ -13,7 +14,7 @@ public class CompositionLine extends Line {
 
     @Override
     public void drawLine(Graphics g) {
-        // TODO Auto-generated method stub        
+        g.setColor(Color.CYAN);       
         int x1 = to.x+to.directionCoordinate[toPort][0];
         int y1 = to.y+to.directionCoordinate[toPort][1]-15;
         int x2 = x1 + 30;
