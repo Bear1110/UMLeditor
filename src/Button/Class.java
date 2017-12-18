@@ -10,8 +10,6 @@ public class Class extends BasicButton{
     public Class(String type,MainWindow m){
         super(type,m);
     }
-    protected void click(){
-    }
     public void clickOnCavans(int x, int y){
         classObject t = new classObject(m.IdCount++,x,y,m.canvas.getInsets());
         m.objects.add(t);
