@@ -22,14 +22,14 @@ import Button.Composition;
 import Button.Generalization;
 import Button.Select;
 import Button.UseCase;
-import Interface.MyButton;
+import Interface.BasicButton;
 import Interface.objectRule;
 import Object.GroupComposite;
 
 public class MainWindow {
     JFrame f;
     JMenuBar menuBar;
-    JMenu menu, submenu;    
+    JMenu menu, submenu;
     public CanvasTool canvas;
     
     //store data
@@ -38,7 +38,7 @@ public class MainWindow {
     public Hashtable<Integer,GroupComposite> allGroupComposites;
     
     public int IdCount = 0;
-    public MyButton button[]= {
+    public BasicButton button[]= {
             new Select("Select",this),
             new Association("Association",this),
             new Generalization("Generalization",this),
@@ -50,7 +50,7 @@ public class MainWindow {
     public static objectRule objectClickedForChangeName = null;
     public static objectRule objectPress = null;
     public static objectRule objectRelease = null;
-    public static MyButton nowMode;
+    public static BasicButton nowMode;
     
     public static void main(String[] args) {
         new MainWindow();
@@ -85,7 +85,7 @@ public class MainWindow {
         cp.add(canvas);
         
         JPanel panel = new JPanel();
-        for(MyButton n : button){
+        for(BasicButton n : button){
             panel.add(n);
         } 
         panel.setLayout(new GridLayout(6,1,0,20));

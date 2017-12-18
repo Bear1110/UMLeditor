@@ -2,11 +2,11 @@ package Button;
 
 import java.util.ArrayList;
 
-import Interface.MyButton;
+import Interface.BasicButton;
 import Interface.objectRule;
 import Main.MainWindow;
 
-public class Select extends MyButton{
+public class Select extends BasicButton{
     private static final long serialVersionUID = 1L;
     
     int x1,x2,y1,y2;

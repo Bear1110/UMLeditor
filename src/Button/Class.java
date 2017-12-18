@@ -1,10 +1,10 @@
 package Button;
 
-import Interface.MyButton;
+import Interface.BasicButton;
 import Main.MainWindow;
 import Object.classObject;
 
-public class Class extends MyButton{
+public class Class extends BasicButton{
     private static final long serialVersionUID = 1L;
     
     public Class(String type,MainWindow m){

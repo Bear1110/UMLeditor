@@ -1,10 +1,10 @@
 package Button;
 
-import Interface.MyButton;
+import Interface.BasicButton;
 import Line.AssociationLine;
 import Main.MainWindow;
 
-public class Association extends MyButton {
+public class Association extends BasicButton {
     private static final long serialVersionUID = 1L;
     
     public Association(String type,MainWindow m){

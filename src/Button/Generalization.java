@@ -1,10 +1,10 @@
 package Button;
 
-import Interface.MyButton;
+import Interface.BasicButton;
 import Line.GeneraliztionLine;
 import Main.MainWindow;
 
-public class Generalization extends MyButton{
+public class Generalization extends BasicButton{
     private static final long serialVersionUID = 1L;
     
     public Generalization(String type,MainWindow m){

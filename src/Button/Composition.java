@@ -1,10 +1,10 @@
 package Button;
 
-import Interface.MyButton;
+import Interface.BasicButton;
 import Line.CompositionLine;
 import Main.MainWindow;
 
-public class Composition extends MyButton{
+public class Composition extends BasicButton{
     private static final long serialVersionUID = 1L;
     
     public Composition(String type,MainWindow m){
