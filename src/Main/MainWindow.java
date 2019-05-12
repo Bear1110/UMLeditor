@@ -162,9 +162,8 @@ public class MainWindow {
                     "Input the Name",
                     "Change object name",
                     JOptionPane.PLAIN_MESSAGE);
-            System.out.println(s);
-            MainWindow.objectClickedForChangeName.setText(s);
-            MainWindow.objectClickedForChangeName = null;
+            if(s != null)
+                MainWindow.objectClickedForChangeName.setText(s);
         }
     }
 }
